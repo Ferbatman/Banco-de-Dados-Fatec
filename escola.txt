@@ -1,0 +1,47 @@
+drop database if exists escola;
+create database escola;
+use escola;
+
+create table aluno
+   (codigo int not null auto_increment,
+    nome varchar(30),
+    idade int,
+    primary key (codigo)
+   );
+
+create table curso
+   (codigo int not null auto_increment,
+    nome varchar(30),
+    sala int,
+    horario time,
+    primary key (codigo)
+   );
+
+create table matricula
+   (codigo_alu int not null,
+    codigo_cur int not null,
+    primary key (codigo_alu, codigo_cur),
+    foreign key (codigo_alu) references aluno (codigo),
+    foreign key (codigo_cur) references curso (codigo)
+   );
+
+insert into aluno (nome, idade) values ('João da Silva', 18);
+insert into aluno (nome, idade) values ('Pedro Costa', 20);
+insert into aluno (nome, idade) values ('Ana Rita', 21);
+insert into aluno (nome, idade) values ('Fabiano Oliveira', 19);
+insert into aluno (nome, idade) values ('Amanda', 40);
+
+insert into curso (nome, sala, horario) values ('Web Designer', 10, '13:00');
+insert into curso (nome, sala, horario) values ('Pacote Office', 11, '15:00');
+insert into curso (nome, sala, horario) values ('Internet', 12, '17:00');
+insert into curso (nome, sala, horario) values ('Windows', 10, '15:30');
+
+insert into matricula values (1, 1);
+insert into matricula values (2, 1);
+insert into matricula values (3, 1);
+insert into matricula values (1, 2);
+insert into matricula values (2, 3);
+insert into matricula values (3, 3);
+insert into matricula values (4, 2);
+insert into matricula values (3, 4);
+insert into matricula values (5, 4);
