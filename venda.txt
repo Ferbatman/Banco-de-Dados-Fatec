@@ -1,0 +1,49 @@
+drop database if exists venda;
+create database venda;
+use venda;
+
+create table vendedor
+   (codigo int not null,
+    nome varchar(30),
+    idade int,
+    salario float,
+    primary key (codigo)
+   );
+
+create table cliente
+   (codigo int not null,
+    cidade varchar(30),
+    tipo varchar(30),
+    primary key (codigo)
+   );
+
+create table pedido
+   (numero int not null,
+    codigo_ven int not null,
+    codigo_cli int not null,
+    quantidade int,
+    primary key (numero),
+    foreign key (codigo_ven) references vendedor (codigo),
+    foreign key (codigo_cli) references cliente (codigo)
+   );
+
+insert into vendedor values (1, 'João', 25, 3000);
+insert into vendedor values (2, 'Maria', 29, 3500);
+insert into vendedor values (3, 'Kelly', 19, 4000);
+insert into vendedor values (4, 'Juliano', 22, 2900);
+insert into vendedor values (5, 'Julia', 20, 2000);
+
+insert into cliente values (11, 'São Paulo', 'Indústria');
+insert into cliente values (12, 'Pres. Prudente', 'Comércio');
+insert into cliente values (13, 'Pres. Prudente', 'Agronegócio');
+insert into cliente values (14, 'São Paulo', 'Comércio');
+insert into cliente values (15, 'São Paulo', 'Agronegócio');
+
+
+insert into pedido values (100, 1, 11, 20);
+insert into pedido values (200, 1, 12, 35);
+insert into pedido values (300, 3, 13, 25);
+insert into pedido values (400, 4, 13, 65);
+insert into pedido values (500, 1, 13, 23);
+insert into pedido values (600, 3, 15, 40);
+insert into pedido values (700, 5, 15, 20);
